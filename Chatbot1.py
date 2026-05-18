@@ -1,2 +1,4 @@
-print("Hello World")
-print("Hai Dunia")
+while True:
+  user = input("Kamu: ")
+  if user == "exit":
+    break
