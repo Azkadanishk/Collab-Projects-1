@@ -11,7 +11,7 @@ bot_dictionary = {
 #function
 def greet_bot():
   out = random.choice(dictionary["greeting"])
-  return print(out)
+  return print(f"Sintesis: {out}")
 
 while True:
   user = input("Kamu: ").lower()
