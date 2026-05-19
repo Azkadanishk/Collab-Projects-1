@@ -1,8 +1,21 @@
 #Library
 import random
+from rich.console import Console
+from rich.panel import Panel
+from rich.prompt import Prompt
+from rich.text import Text
+import time
 
 #Design
-print("-----SINTESIS BOT------")
+console = Console()
+
+console.print(
+  Panel.fit(
+    "[bold cyan]SINTESIS CHATBOT[/bold cyan]\n[green]by Azka Danish Kayana and Aida Rifdah Azizah[/green]",
+    border_style="bright_blue"
+  )
+)
+
 
 ###Dictionary
 dictionary = {
@@ -96,7 +109,9 @@ def matematics_bot():
 #Interface user set
 while True:
   #User setting
-  user = input("Kamu: ").lower()
+  user = Prompt.ask(
+    "[bold yellow]kamu[/bold yellow]"
+  ).lower()
   
   #distribusi function
   if user in dictionary["greeting"]:
