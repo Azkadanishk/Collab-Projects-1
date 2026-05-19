@@ -110,6 +110,6 @@ while True:
     break
   elif user in dictionary["matematics"]:
     matematics_bot()
-  elif user == "exit" or "break":
+  elif user in ["exit", "break"]:
     print("Sintesis: Exiting.....")
     break
