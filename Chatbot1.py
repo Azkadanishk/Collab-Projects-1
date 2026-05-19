@@ -4,7 +4,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.text import Text
-
+import time
 #Design
 console = Console()
 
@@ -30,6 +30,11 @@ def fitur_teks(teks):
     f"[blue_bright]{teks}[/blue_bright]\n",
     end=""
   )
+def sintephysics(teks):
+  console.print(
+    f"[bold green]Sintesis(Physics): [/bold green]{teks}\n",
+    end=""
+  )
 
 ###Dictionary
 dictionary = {
@@ -37,9 +42,10 @@ dictionary = {
   "kabar": ["apa kabar?", "how are you?", "kabar kamu gimana?", "apakabar", "apa kabar"],
   "ask": ["what is your name?", "nama kamu siapa?", "namamu siapa?", 'nama kamu siapa', "namamu siapa", "what's your name"],
   "farewell": ["senang bertemu denganmu", "dadah", "goodbye", "bye", "dah"],
-  "matematics": ["math", "math mode", "mode matematika", "matematika", "matematika"],
+  "matematics": ["math", "math mode", "mode matematika", "matematika"],
   "sintecal": ["sintesis", "sinte", "sis", "sin", "tesis"],
-  "help": ["help", "bantuan", "menu", "fitur", "daftar fitur"]
+  "help": ["help", "bantuan", "menu", "fitur", "daftar fitur"],
+  "physics": ["physics", "physics mode", "fisika", "mode fisika"]
 }
 bot_dictionary = {
   "greeting": ["Halo juga!", "Hi!", "Hello!", "haloooo", "Yowww"],
@@ -49,11 +55,12 @@ bot_dictionary = {
   "sintecal": ["Sintesis disini!, ada yang bisa saya bantu?", "Ay ay ay, Sintesis siap membantu", "Siap tuan, ada yang bisa saya bantu", "Sintee--sis on!, can i help you?", "Sintesis here!, do you need help?"],
 }
 #help function
-def help():
+def help_menu():
   sintesis("")
   head_teks("Berikut daftar prompt yang bisa digunakan: \n")
   fitur_teks("- menu")
   fitur_teks("- math mode/mode matematika")
+  fitur_teks("- physics mode/mode fisika")
   fitur_teks("- exit/break (Keluar dari program)")
 #math mode
 def math_bot():
@@ -65,11 +72,15 @@ def math_bot():
   fitur_teks("2. - (Pengurangan)")
   fitur_teks("3. x (Perkalian)")
   fitur_teks("4. / (Pembagian)")
-  fitur_teks("5. Exit (Keluar mode)")
+  fitur_teks("5. Exit Math Mode")
 
-  ask_menu = int(Prompt.ask(
+  ask_menu = Prompt.ask(
     "[bold green]Sintesis(Math): Pilih opsi: [/bold green]",
-  ))
+    choices=["1", "2", "3", "4", "5"]
+  )
+
+  ask_menu = int(ask_menu)
+  
   if ask_menu == 1:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): [/bold green]Menambah berapa angka? "
@@ -83,7 +94,9 @@ def math_bot():
     total_now = sum(total)
     console.print(
       f"[bold green]Sintesis(Math): [/bold green]Hasilnya adalah {total_now}"
-    ) 
+    )
+    time.sleep(1.5)
+    math_bot()
   elif ask_menu == 2:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): Mengurangi berapa angka? [/bold green]"
@@ -100,6 +113,8 @@ def math_bot():
     console.print(
       f"[bold green]Sintesis(Math): Hasilnya adalah[/bold green] {total_now}"
     )
+    time.sleep(1.5)
+    math_bot()
   elif ask_menu == 3:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): Mengkali berapa angka? [/bold green]"
@@ -116,6 +131,8 @@ def math_bot():
     console.print(
       f"[bold green]Sintesis(Math): Hasilnya adalah[/bold green] {total_now}"
     )
+    time.sleep(1.5)
+    math_bot()
   elif ask_menu == 4:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): Membagi berapa angka? [/bold green]"
@@ -138,12 +155,115 @@ def math_bot():
       console.print(
         f"[bold green]Sintesis(Math): Hasilnya adalah[/bold green] {total_now}"
       )
+      time.sleep(1.5)
+      math_bot()
   elif ask_menu == 5:
     console.print(
       "[bold green]Sintesis(Math):[/bold green] Keluar dari mode math....."
     )
   else:
     console.print("[bold green]Sintesis:[/bold green] Maaf anda salah memilih Opsi!")
+#function physics
+def physics_bot():
+  sintesis("")
+  head_teks("Pilih Opsi perhitungan Fisika berikut: \n")
+  fitur_teks("1. Konversi waktu")
+  fitur_teks("2. Konversi jarak")
+  fitur_teks("3. Exit Physics Mode")
+
+  ask_choice = Prompt.ask(
+    "[bold green]Sintesis(Physics): Pilih opsi: [/bold green]",
+    choices=["1", "2", "3", "4", "5"]
+  )
+  ask_choice = int(ask_choice)
+
+  if ask_choice == 1:
+    sintephysics("")
+    head_teks("Pilih opsi konversi: \n")
+    fitur_teks("1. Detik ke Menit")
+    fitur_teks("2. Menit ke Jam")
+    fitur_teks("3. Jam ke Menit")
+    fitur_teks("4. Menit ke Detik")
+    fitur_teks("5. Exit konversi Waktu")
+
+    ask_time = Prompt.ask(
+      "[bold green]Sintesis(Physics): Pilih opsi konversi waktu: [/bold green]",
+      choices=["1", "2", "3", "4", "5"]
+    )
+    ask_time = int(ask_time)
+
+    if ask_time == 1:
+      detik = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green] Input detik: "
+      ))
+      menit = detik / 60
+      hasil = f"{menit} menit"
+      sintephysics(f"Hasil konversi {hasil}")
+    
+    elif ask_time == 2:
+      menit = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green] Input menit: "
+      ))
+      jam = menit / 60
+      hasil = f"{jam} jam"
+      sintephysics(f"Hasil konversi {hasil}")
+    
+    elif ask_time == 3:
+      jam = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green] Input jam: "
+      ))
+      menit = jam * 60
+      hasil = f"{menit} menit"
+      sintephysics(f"Hasil konversi {hasil}")
+    
+    elif ask_time == 4:
+      menit = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input menit: "
+      ))
+      detik = menit * 60
+      hasil = f"{detik} detik"
+      sintephysics(f"Hasil Konversi {hasil}")
+
+    elif ask_time == 5:
+      sintephysics("Exit from konversi jarak...")
+      physics_bot()
+  
+  if ask_choice == 2:
+    sintephysics("")
+    head_teks("Pilih opsi konversi jarak: \n")
+    fitur_teks("1. Meter ke Kilometer")
+    fitur_teks("2. Kilometer ke Meter")
+    fitur_teks("3. Exit konversi jarak")
+
+    ask_distance = Prompt.ask(
+      "[bold green]Sintesis(Physics): Pilih opsi: ",
+      choices=["1", "2", "3"]
+    )
+
+    ask_distance = int(ask_distance)
+
+    if ask_distance == 1:
+      meter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Meter: "
+      ))
+      kilometer = meter / 1000
+      hasil = f"{kilometer} km"
+      sintephysics(f"Hasil konversi {hasil}")
+    
+    elif ask_distance == 2:
+      kilometer = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Kilometer: "
+      ))
+      meter = kilometer * 1000
+      hasil = f"{meter} m"
+      sintephysics(f"Hasil konversi {hasil}")
+    
+    elif ask_distance == 3:
+      sintephysics("Exit from Konversi Jarak...")
+      physics_bot()
+  
+  elif ask_choice == 3:
+    sintephysics("Exiting Physics Mode..")
 #function jawaban
 def greet_bot():
   hasil = random.choice(bot_dictionary["greeting"])
@@ -164,6 +284,9 @@ def matematics_bot():
 def sintecal_bot():
   hasil = random.choice(bot_dictionary["sintecal"])
   sintesis(hasil)
+def sintephysics_bot():
+  sintesis("Physics mode Aktif!")
+  physics_bot()
 #Interface user set
 while True:
   #User setting
@@ -184,7 +307,9 @@ while True:
   elif user in dictionary["matematics"]:
     matematics_bot()
   elif user in dictionary["help"]:
-    help()
+    help_menu()
+  elif user in dictionary["physics"]:
+    sintephysics_bot()
   elif user in ["exit", "break"]:
     sintesis("Exiting.....")
     break
