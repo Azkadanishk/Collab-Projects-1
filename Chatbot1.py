@@ -10,7 +10,7 @@ console = Console()
 
 console.print(
   Panel.fit(
-    "[bold cyan]SINTESIS CHATBOT[/bold cyan]\n[green]by Azka Danish Kayana[/green]",
+    "[bold cyan]SINTESIS CHATBOT[/bold cyan]\n[green]by Azka Danish Kayana and Aida Rifdah Azizah[/green]",
     border_style="bright_blue"
   )
 )
