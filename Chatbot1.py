@@ -65,6 +65,19 @@ def sinteflight(teks):
   )
   typing(teks)
   print("")
+
+#function loop fitur utama
+
+def loop_feature(feature):
+  question = Prompt.ask(
+    "[bold red]Next y/n? [/bold red]"
+  )
+  if question == "y":
+    feature()
+  elif question == "n":
+    feature()
+  else:
+    feature()
 ###Dictionary
 dictionary = {
   "greeting": ["hi", "halo", "hello", "hai", "yoo", "yow", "heloo", "helo", "hlo", "p", "yo", "yow", "yoww", "hii", "haii"], 
@@ -124,8 +137,7 @@ def math_bot():
       total.append(numin)
     total_now = sum(total)
     sintemath(f"Hasilnya adalah {total_now}")
-    time.sleep(1.5)
-    math_bot()
+    loop_feature(math_bot)
   elif ask_menu == 2:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): Mengurangi berapa angka? [/bold green]"
@@ -140,8 +152,7 @@ def math_bot():
     for angka in total[1:]:
       total_now -= angka 
     sintemath(f"Hasilnya adalah {total_now}")
-    time.sleep(1.5)
-    math_bot()
+    loop_feature(math_bot)
   elif ask_menu == 3:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): Mengkali berapa angka? [/bold green]"
@@ -156,8 +167,7 @@ def math_bot():
     for angka in total[1:]:
       total_now *= angka
     sintemath(f"Hasilnya adalah {total_now}")
-    time.sleep(1.5)
-    math_bot()
+    loop_feature(math_bot)
   elif ask_menu == 4:
     total_in = int(Prompt.ask(
       "[bold green]Sintesis(Math): Membagi berapa angka? [/bold green]"
@@ -176,10 +186,9 @@ def math_bot():
       for angka in total[1:]:
         total_now /= angka 
       sintemath(f"Hasilnya adalah {total_now}")
-      time.sleep(1.5)
-      math_bot()
+      loop_feature(math_bot)
   elif ask_menu == 5:
-    sintemath("Keluar dari mode math.....")
+    sintemath("Exiting Math Mode...")
   else:
     sintemath("Maaf anda salah memilih Opsi!")
 #function physics
@@ -188,11 +197,14 @@ def physics_bot():
   head_teks("Pilih Opsi perhitungan Fisika berikut: \n")
   fitur_teks("1. Konversi waktu")
   fitur_teks("2. Konversi jarak")
-  fitur_teks("3. Exit Physics Mode")
+  fitur_teks("3. Konversi Suhu")
+  fitur_teks("4. Kecepatan")
+  fitur_teks("5. Energi")
+  fitur_teks("6. Exit Physics Mode")
 
   ask_choice = Prompt.ask(
     "[bold green]Sintesis(Physics): Pilih opsi: [/bold green]",
-    choices=["1", "2", "3"]
+    choices=["1", "2", "3", "4", "5", "6"]
   )
   ask_choice = int(ask_choice)
 
@@ -218,7 +230,8 @@ def physics_bot():
       menit = detik / 60
       hasil = f"{menit} menit"
       sintephysics(f"Hasil konversi {hasil}")
-    
+      loop_feature(physics_bot)
+
     elif ask_time == 2:
       menit = float(Prompt.ask(
         "[bold green]Sintesis(Physics): [/bold green] Input menit: "
@@ -226,6 +239,7 @@ def physics_bot():
       jam = menit / 60
       hasil = f"{jam} jam"
       sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
     
     elif ask_time == 3:
       jam = float(Prompt.ask(
@@ -234,6 +248,7 @@ def physics_bot():
       menit = jam * 60
       hasil = f"{menit} menit"
       sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
     
     elif ask_time == 4:
       menit = float(Prompt.ask(
@@ -242,6 +257,7 @@ def physics_bot():
       detik = menit * 60
       hasil = f"{detik} detik"
       sintephysics(f"Hasil Konversi {hasil}")
+      loop_feature(physics_bot)
 
     elif ask_time == 5:
       sintephysics("Exit from konversi jarak...")
@@ -252,37 +268,322 @@ def physics_bot():
     head_teks("Pilih opsi konversi jarak: \n")
     fitur_teks("1. Meter ke Kilometer")
     fitur_teks("2. Kilometer ke Meter")
-    fitur_teks("3. Exit konversi jarak")
+    fitur_teks("3. Milimeter ke Centimeter")
+    fitur_teks("4. Centimeter ke Desimeter")
+    fitur_teks("5. Desimeter ke Meter")
+    fitur_teks("6. Meter ke Dekameter")
+    fitur_teks("7. Dekameter ke Hektometer")
+    fitur_teks("8. Hektometer ke Kilometer")
+    fitur_teks("9. Kilometer ke Hektometer")
+    fitur_teks("10. Hektometer ke Dekameter")
+    fitur_teks("11. Dekameter ke Meter")
+    fitur_teks("12. Meter ke Desimeter")
+    fitur_teks("13. Desimeter ke Centimeter")
+    fitur_teks("14. Centimeter ke Milimeter")
+    fitur_teks("15. Exit konversi jarak")
 
     ask_distance = Prompt.ask(
       "[bold green]Sintesis(Physics): Pilih opsi: ",
-      choices=["1", "2", "3"]
+      choices=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
     )
 
     ask_distance = int(ask_distance)
 
     if ask_distance == 1:
       meter = float(Prompt.ask(
-        "[bold green]Sintesis(Physics): [/bold green]Input Meter: "
+        "[bold green]Sintesis(Physics): [/bold green]Input Meter(m): "
       ))
       kilometer = meter / 1000
       hasil = f"{kilometer} km"
       sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
     
     elif ask_distance == 2:
       kilometer = float(Prompt.ask(
-        "[bold green]Sintesis(Physics): [/bold green]Input Kilometer: "
+        "[bold green]Sintesis(Physics): [/bold green]Input Kilometer(km): "
       ))
       meter = kilometer * 1000
       hasil = f"{meter} m"
       sintephysics(f"Hasil konversi {hasil}")
-    
+      loop_feature(physics_bot)
+
     elif ask_distance == 3:
+      milimeter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Milimeter(mm): "
+      ))
+      centimeter = milimeter / 10
+      hasil = f"{centimeter} cm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 4:
+      centimeter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Centimeter(cm): "
+      ))
+      desimeter = centimeter / 10
+      hasil = f"{desimeter} dm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 5:
+      desimeter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Desimeter(dm): "
+      ))
+      meter = desimeter / 10
+      hasil = f"{meter} m"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 6:
+      meter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Meter(m): "
+      ))
+      dekameter = meter / 10
+      hasil = f"{dekameter} dam"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 7:
+      dekameter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Dekameter(dam): "
+      ))
+      hektometer = dekameter / 10
+      hasil = f"{hektometer} hm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 8:
+      hektometer = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Hektometer(hm): "
+      ))
+      kilometer = hektometer / 10
+      hasil = f"{kilometer} km"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 9:
+      kilometer = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Kilometer(km): "
+      ))
+      hektometer = kilometer * 10
+      hasil = f"{hektometer} hm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 10:
+      hektometer = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Hektometer(hm): "
+      ))
+      dekameter = hektometer * 10
+      hasil = f"{dekameter} dam"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 11:
+      dekameter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Dekameter(dam): "
+      ))
+      meter = dekameter * 10
+      hasil = f"{meter} m"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 12:
+      meter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input meter(m): "
+      ))
+      desimeter = meter * 10
+      hasil = f"{desimeter} dm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 13:
+      desimeter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input desimeter(dm): "
+      ))
+      centimeter = desimeter * 10
+      hasil = f"{centimeter} cm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 14:
+      centimeter = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Centimeter(cm): "
+      ))
+      milimeter = centimeter * 10
+      hasil = f"{milimeter} mm"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_distance == 15:
       sintephysics("Exit from Konversi Jarak...")
       physics_bot()
   
   elif ask_choice == 3:
-    sintephysics("Exiting Physics Mode..")
+    sintephysics("")
+    head_teks("Pilih opsi konversi suhu: \n")
+    fitur_teks("1. Celcius ke Reamur")
+    fitur_teks("2. Reamur ke Celcius")
+    fitur_teks("3. Celcius ke Fahrenheit")
+    fitur_teks("4. Fahrenheit ke Celcius")
+    fitur_teks("5. Celcius ke Kelvin")
+    fitur_teks("6. Exit konversi Suhu")
+
+    ask_suhu = Prompt.ask(
+      "[bold green]Sintesis(Physics): Pilih opsi: ",
+      choices=["1", "2", "3", "4", "5", "6"]
+    )
+
+    ask_suhu = int(ask_suhu)
+
+    if ask_suhu == 1:
+      celcius = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Celcius(°C): "
+      ))
+      reamur = (4/5) * celcius
+      hasil = f"{reamur} °R"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_suhu == 2:
+      reamur = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Reamur(°R): "
+      ))
+      celcius = (5/4) * reamur
+      hasil = f"{celcius} °C"
+      sintephysics(f"Hasil konversi {hasil}")  
+      loop_feature(physics_bot) 
+
+    elif ask_suhu == 3:
+      celcius = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Celcius(°C): "
+      ))
+      fahrenheit = (9/5) * celcius + 32
+      hasil = f"{fahrenheit} °F"
+      sintephysics(f"Hasil konversi {hasil}")
+      loop_feature(physics_bot) 
+
+    elif ask_suhu == 4:
+      fahrenheit = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Fahrenheit(°F): "
+      ))
+      celcius = (5/9) * (fahrenheit - 32)
+      hasil = f"{celcius} °C"
+      sintephysics(f"Hasil konversi {hasil}")  
+      loop_feature(physics_bot) 
+
+    elif ask_suhu == 5:
+      celcius = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Celcius(°C): "
+      ))
+      kelvin = celcius + 273
+      hasil = f"{kelvin} K"
+      sintephysics(f"Hasil konversi {hasil}") 
+      loop_feature(physics_bot)
+
+    elif ask_suhu == 6:
+      sintephysics("Exiting Konversi Suhu...")  
+      physics_bot()
+
+  elif ask_choice == 4:
+    sintephysics("")
+    head_teks("Pilih opsi berikut: ")
+    fitur_teks("1. Kecepatan(v)")
+    fitur_teks("2. Jarak(s)")
+    fitur_teks("3. Waktu(t)")
+    fitur_teks("4. Exit Kecepatan")
+
+    ask_speed = Prompt.ask(
+      "[bold green]Sintesis(Physics): [/bold green]Pilih Opsi: ",
+      choices=["1", "2", "3", "4"]
+    )
+    
+    ask_speed = int(ask_speed)
+
+    if ask_speed == 1:
+      jarak = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Jarak(m): "
+      ))
+      waktu = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Waktu(t): "
+      ))
+      kecepatan = jarak / waktu
+      hasil = f"{kecepatan} m/s"
+      sintephysics(f"Hasil perhitungan Kecepatan adalah {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_speed == 2:
+      kecepatan = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Kecepatan(m/s): "
+      ))
+      waktu = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Waktu(t): "
+      ))
+      jarak = kecepatan * waktu
+      hasil = f"{jarak} m"
+      sintephysics(f"Hasil perhitungan Jarak adalah {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_speed == 3:
+      kecepatan = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Kecepatan(m/s): "
+      ))
+      jarak = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Jarak(m): "
+      ))
+      waktu = jarak / kecepatan
+      hasil = f"{waktu} s"
+      sintephysics(f"Hasil perhitungan Waktu adalah {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_speed == 4:
+      sintephysics("Exiting Kecepatan...")
+      physics_bot()
+
+  elif ask_choice == 5:
+    sintephysics("")
+    head_teks("Pilih opsi berikut: ")
+    fitur_teks("1. Energi Kinetik(Ek)")
+    fitur_teks("2. Energi Potensial(Ep)")
+    fitur_teks("3. Exit Energi")
+
+    ask_energi = Prompt.ask(
+      "[bold green]Sintesis(Physics): [/bold green]Pilih Opsi: ",
+      choices=["1", "2", "3"]
+    )
+
+    ask_energi = int(ask_energi)
+
+    if ask_energi == 1:
+      massa = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Massa(kg): "
+      ))
+      kecepatan = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Kecepatan(m/s): "
+      ))
+      ek = 0.5 * massa * kecepatan ** 2
+      hasil = f"{ek} J"
+      sintephysics(f"Hasil perhitungan Energi Kinetik adalah {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_energi == 2:
+      massa = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Massa(kg): "
+      ))
+      ketinggian = float(Prompt.ask(
+        "[bold green]Sintesis(Physics): [/bold green]Input Ketinggian(m): "
+      ))
+      ep = massa * 9.8 * ketinggian
+      hasil = f"{ep} J"
+      sintephysics(f"Hasil perhitungan Energi Potensial adalah {hasil}")
+      loop_feature(physics_bot)
+
+    elif ask_energi == 3:
+      sintephysics("Exiting Energi...")
+      physics_bot()
+
+  elif ask_choice == 6:
+    sintephysics("Exiting Physics Mode...")
 
 # Flight mode
 def flight_bot():
@@ -308,7 +609,7 @@ def flight_bot():
       harga = i * 16000000
     hasil = f"Harga tiket ke Swiss untuk {total_in} orang adalah {harga}"
     sinteflight(hasil)
-    time.sleep(1.5)
+    loop_feature(flight_bot)
 
   elif ask_menu == 2:
     total_in = int(Prompt.ask(
@@ -318,7 +619,7 @@ def flight_bot():
       harga = i * 15000000 
     hasil = f"Harga tiket ke Italy untuk {total_in} orang adalah {harga}"
     sinteflight(hasil)
-    time.sleep(1.5)
+    loop_feature(flight_bot)
 
   elif ask_menu == 3:
     total_in = int(Prompt.ask(
@@ -328,7 +629,7 @@ def flight_bot():
       harga = i * 15000000 
     hasil = f"Harga tiket ke France untuk {total_in} orang adalah {harga}"
     sinteflight(hasil)
-    time.sleep(1.5)
+    loop_feature(flight_bot)
 
   elif ask_menu == 4:
     total_in = int(Prompt.ask(
@@ -338,8 +639,11 @@ def flight_bot():
       harga = i * 5500000 
     hasil = f"Harga tiket ke Singapore untuk {total_in} orang adalah {harga}"
     sinteflight(hasil)
-    time.sleep(1.5)
-    flight_bot()
+    loop_feature(flight_bot)
+  
+  elif ask_menu == 5:
+    sinteflight("Exiting Flight Mode...")
+    physics_bot()
 #function jawaban
 def greet_bot():
   hasil = random.choice(bot_dictionary["greeting"])
@@ -372,7 +676,7 @@ def sinteflight_bot():
 while True:
   #User setting
   user = Prompt.ask(
-    "[bold yellow]kamu[/bold yellow]"
+    "[bold yellow]Kamu[/bold yellow]"
   ).lower()
   
   #distribusi function
