@@ -70,7 +70,7 @@ dictionary = {
   "greeting": ["hi", "halo", "hello", "hai", "yoo", "yow", "heloo", "helo", "hlo", "p", "yo", "yow", "yoww", "hii", "haii"], 
   "kabar": ["apa kabar?", "how are you?", "kabar kamu gimana?", "apakabar", "apa kabar"],
   "ask": ["what is your name?", "nama kamu siapa?", "namamu siapa?", 'nama kamu siapa', "namamu siapa", "what's your name"],
-  "farewell": ["senang bertemu denganmu", "dadah", "goodbye", "bye", "dah"],
+  "farewell": ["senang bertemu denganmu", "dadah", "goodbye", "bye", "dah", "see you"],
   "matematics": ["math", "math mode", "mode matematika", "matematika"],
   "sintecal": ["sintesis", "sinte", "sis", "sin", "tesis"],
   "help": ["help", "bantuan", "menu", "fitur", "daftar fitur"],
@@ -91,6 +91,7 @@ def help_menu():
   fitur_teks("- menu")
   fitur_teks("- math mode/mode matematika")
   fitur_teks("- physics mode/mode fisika")
+  fitur_teks("- flight mode/mode penerbangan")
   fitur_teks("- exit/break (Keluar dari program)")
 #math mode
 def math_bot():
@@ -308,6 +309,36 @@ def flight_bot():
     hasil = f"Harga tiket ke Swiss untuk {total_in} orang adalah {harga}"
     sinteflight(hasil)
     time.sleep(1.5)
+
+  elif ask_menu == 2:
+    total_in = int(Prompt.ask(
+      "[bold green]Sintesis(Flight): [/bold green]ingin berapa orang? "
+      ))
+    for i in range(total_in):
+      harga = i * 15000000 
+    hasil = f"Harga tiket ke Italy untuk {total_in} orang adalah {harga}"
+    sinteflight(hasil)
+    time.sleep(1.5)
+
+  elif ask_menu == 3:
+    total_in = int(Prompt.ask(
+      "[bold green]Sintesis(Flight): [/bold green]ingin berapa orang? "
+      ))
+    for i in range(total_in):
+      harga = i * 15000000 
+    hasil = f"Harga tiket ke France untuk {total_in} orang adalah {harga}"
+    sinteflight(hasil)
+    time.sleep(1.5)
+
+  elif ask_menu == 4:
+    total_in = int(Prompt.ask(
+      "[bold green]Sintesis(Flight): [/bold green]ingin berapa orang? "
+      ))
+    for i in range(total_in):
+      harga = i * 5500000 
+    hasil = f"Harga tiket ke Singapore untuk {total_in} orang adalah {harga}"
+    sinteflight(hasil)
+    time.sleep(1.5)
     flight_bot()
 #function jawaban
 def greet_bot():
@@ -322,18 +353,20 @@ def asking_bot():
 def farewell_bot():
   hasil = random.choice(bot_dictionary["farewell"])
   return sintesis(hasil)
+def sintecal_bot():
+  hasil = random.choice(bot_dictionary["sintecal"])
+  return sintesis(hasil)
 def matematics_bot():
   out = "Mode Matematika Aktif!"
   sintesis(out)
   math_bot()
-def sintecal_bot():
-  hasil = random.choice(bot_dictionary["sintecal"])
-  sintesis(hasil)
 def sintephysics_bot():
-  sintesis("Physics mode Aktif!")
+  hasil = "Physics mode Aktif!"
+  sintesis(hasil)
   physics_bot()
 def sinteflight_bot():
-  sintesis("Flight mode Aktif!")
+  out = "Flight mode Aktif!"
+  sintesis(out)
   flight_bot()
 #Interface user set
 while True:
@@ -352,6 +385,8 @@ while True:
   elif user in dictionary["farewell"]:
     farewell_bot()
     break
+  elif user in dictionary["sintecal"]:
+    sintecal_bot()
   elif user in dictionary["matematics"]:
     matematics_bot()
   elif user in dictionary["help"]:
