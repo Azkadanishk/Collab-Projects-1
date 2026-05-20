@@ -14,27 +14,50 @@ console.print(
     border_style="bright_blue"
   )
 )
+
+#func typing
+
+def typing(teks):
+  for huruf in teks:
+    print(huruf, end="", flush=True)
+    time.sleep(0.0001)
+
+
 #function teks
 def sintesis(teks):
   console.print(
-    f"[bold green]Sintesis: [/bold green]{teks}\n",
+    f"[bold green]Sintesis: [/bold green]",
     end=""
   )
+  typing(teks)
+  print("")
 def head_teks(teks):
   console.print(
     f"[bold bright_magenta]{teks}[/bold bright_magenta]\n",
     end=""
   )
+  
 def fitur_teks(teks):
   console.print(
-    f"[blue_bright]{teks}[/blue_bright]\n",
+    f"[bold blue]{teks}[/bold blue]\n",
     end=""
   )
+
+def sintemath(teks):
+  console.print(
+    f"[bold green]Sintesis(Math): [/bold green]",
+    end=""
+  )
+  typing(teks)
+  print("")
+
 def sintephysics(teks):
   console.print(
-    f"[bold green]Sintesis(Physics): [/bold green]{teks}\n",
+    f"[bold green]Sintesis(Physics): [/bold green]",
     end=""
   )
+  typing(teks)
+  print("")
 
 ###Dictionary
 dictionary = {
@@ -92,9 +115,7 @@ def math_bot():
       ))
       total.append(numin)
     total_now = sum(total)
-    console.print(
-      f"[bold green]Sintesis(Math): [/bold green]Hasilnya adalah {total_now}"
-    )
+    sintemath(f"Hasilnya adalah {total_now}")
     time.sleep(1.5)
     math_bot()
   elif ask_menu == 2:
@@ -110,9 +131,7 @@ def math_bot():
     total_now = total[0]
     for angka in total[1:]:
       total_now -= angka 
-    console.print(
-      f"[bold green]Sintesis(Math): Hasilnya adalah[/bold green] {total_now}"
-    )
+    sintemath(f"Hasilnya adalah {total_now}")
     time.sleep(1.5)
     math_bot()
   elif ask_menu == 3:
@@ -128,9 +147,7 @@ def math_bot():
       total_now = total[0]
     for angka in total[1:]:
       total_now *= angka
-    console.print(
-      f"[bold green]Sintesis(Math): Hasilnya adalah[/bold green] {total_now}"
-    )
+    sintemath(f"Hasilnya adalah {total_now}")
     time.sleep(1.5)
     math_bot()
   elif ask_menu == 4:
@@ -143,26 +160,20 @@ def math_bot():
         f"[bold green]Input Angka {i+1}: [/bold green]"
       ))
       if i > 0 and numin == 0:
-        console.print(
-          "[bold green]Sintesis(Math): [/bold green]Maaf angka pembagi tidak boleh 0!"
-        )
+        sintemath("Maaf angka pembagi tidak boleh 0!")
         break
       total.append(numin)
       total_now = total[0]
     else:
       for angka in total[1:]:
         total_now /= angka 
-      console.print(
-        f"[bold green]Sintesis(Math): Hasilnya adalah[/bold green] {total_now}"
-      )
+      sintemath(f"Hasilnya adalah {total_now}")
       time.sleep(1.5)
       math_bot()
   elif ask_menu == 5:
-    console.print(
-      "[bold green]Sintesis(Math):[/bold green] Keluar dari mode math....."
-    )
+    sintemath("Keluar dari mode math.....")
   else:
-    console.print("[bold green]Sintesis:[/bold green] Maaf anda salah memilih Opsi!")
+    sintemath("Maaf anda salah memilih Opsi!")
 #function physics
 def physics_bot():
   sintesis("")
