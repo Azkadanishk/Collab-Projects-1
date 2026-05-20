@@ -3,7 +3,6 @@ import random
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
-from rich.text import Text
 import time
 #Design
 console = Console()
@@ -20,7 +19,7 @@ console.print(
 def typing(teks):
   for huruf in teks:
     print(huruf, end="", flush=True)
-    time.sleep(0.0001)
+    time.sleep(0.01)
 
 
 #function teks
@@ -59,14 +58,6 @@ def sintephysics(teks):
   typing(teks)
   print("")
 
-def sinteflight(teks):
-  console.print(
-    f"[bold green]Sintesis(Flight): [/bold green]",
-    end=""
-  )
-  typing(teks)
-  print("")
-
 ###Dictionary
 dictionary = {
   "greeting": ["hi", "halo", "hello", "hai", "yoo", "yow", "heloo", "helo", "hlo", "p", "yo", "yow", "yoww", "hii", "haii"], 
@@ -76,8 +67,7 @@ dictionary = {
   "matematics": ["math", "math mode", "mode matematika", "matematika"],
   "sintecal": ["sintesis", "sinte", "sis", "sin", "tesis"],
   "help": ["help", "bantuan", "menu", "fitur", "daftar fitur"],
-  "physics": ["physics", "physics mode", "fisika", "mode fisika"],
-  "flight": ["flight", "flight mode", "penerbangan", "mode penerbangan"],
+  "physics": ["physics", "physics mode", "fisika", "mode fisika"]
 }
 bot_dictionary = {
   "greeting": ["Halo juga!", "Hi!", "Hello!", "haloooo", "Yowww"],
@@ -93,7 +83,6 @@ def help_menu():
   fitur_teks("- menu")
   fitur_teks("- math mode/mode matematika")
   fitur_teks("- physics mode/mode fisika")
-  fitur_teks("- flight mode")
   fitur_teks("- exit/break (Keluar dari program)")
 #math mode
 def math_bot():
@@ -154,7 +143,7 @@ def math_bot():
         f"[bold green]Input Angka {i+1}: [/bold green]"
       ))
       total.append(numin)
-      total_now = total[0]
+    total_now = total[0]
     for angka in total[1:]:
       total_now *= angka
     sintemath(f"Hasilnya adalah {total_now}")
@@ -194,7 +183,7 @@ def physics_bot():
 
   ask_choice = Prompt.ask(
     "[bold green]Sintesis(Physics): Pilih opsi: [/bold green]",
-    choices=["1", "2", "3", "4", "5"]
+    choices=["1", "2", "3"]
   )
   ask_choice = int(ask_choice)
 
@@ -249,7 +238,7 @@ def physics_bot():
       sintephysics("Exit from konversi jarak...")
       physics_bot()
   
-  if ask_choice == 2:
+  elif ask_choice == 2:
     sintephysics("")
     head_teks("Pilih opsi konversi jarak: \n")
     fitur_teks("1. Meter ke Kilometer")
@@ -285,32 +274,6 @@ def physics_bot():
   
   elif ask_choice == 3:
     sintephysics("Exiting Physics Mode..")
-#Flight Mode
-def flight_bot():
-  sinteflight("")
-  head_teks("PILIH OPSI NEGARA\n")
-  fitur_teks("1. Swiss")
-  fitur_teks("2. Italy")
-  fitur_teks("3. France")
-  fitur_teks("4. Singapore")
-  fitur_teks("5. Exit Flight Mode")
-
-  ask_menu = Prompt.ask(
-    "[bold green]Sintesis(Flight): Pilih opsi: [/bold green]",
-    choices=["1", "2", "3", "4", "5"]
-  )
-  ask_menu = int(ask_menu)
-
-  if ask_menu == 1:
-    total_in = int(Prompt.ask(
-      "[bold green]Sintesis(Flight): [/bold green]ingin berapa orang? "
-      ))
-    for i in range(total_in):
-      harga = i * 16000000
-    hasil = f"Harga tiket ke Swiss untuk {total_in} orang adalah {harga}"
-    sinteflight(hasil)
-    time.sleep(1.5)
-    flight_bot()
 #function jawaban
 def greet_bot():
   hasil = random.choice(bot_dictionary["greeting"])
@@ -334,9 +297,6 @@ def sintecal_bot():
 def sintephysics_bot():
   sintesis("Physics mode Aktif!")
   physics_bot()
-def sinteflight_bot():
-  sintesis("Flight mode Aktif!")
-  flight_bot()
 #Interface user set
 while True:
   #User setting
@@ -360,8 +320,6 @@ while True:
     help_menu()
   elif user in dictionary["physics"]:
     sintephysics_bot()
-  elif user in dictionary["flight"]:
-    sinteflight_bot()
   elif user in ["exit", "break"]:
     sintesis("Exiting.....")
     break
