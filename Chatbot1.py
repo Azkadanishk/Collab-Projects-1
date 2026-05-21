@@ -89,6 +89,7 @@ dictionary = {
   "help": ["help", "bantuan", "menu", "fitur", "daftar fitur"],
   "physics": ["physics", "physics mode", "fisika", "mode fisika"],
   "flight": ["flight", "flight mode", "penerbangan", "mode penerbangan"],
+  "thank": ["terimakasih", "terima kasih", "makasih", "mekasih", "mksh", "thanks", "thank you", "thankyou", "thx"]
 }
 bot_dictionary = {
   "greeting": ["Halo juga!", "Hi!", "Hello!", "haloooo", "Yowww"],
@@ -96,6 +97,7 @@ bot_dictionary = {
   "ask": ["Nama aku Sinstesis", "My name is Sintesis", "Nama saya Sintesis", "I'm Sintesis!"],
   "farewell": ["Senang bertemu denganmu juga!", "Sampai bertemu lagi!", "See you!", "Bye"],
   "sintecal": ["Sintesis disini!, ada yang bisa saya bantu?", "Ay ay ay, Sintesis siap membantu", "Siap tuan, ada yang bisa saya bantu", "Sintee--sis on!, can i help you?", "Sintesis here!, do you need help?"],
+  "thank": ["Sama-sama!", "Tentu, senang bisa membantu!", "You're welcome!", "Sama-sama, senang bisa membantu!"]
 }
 #help function
 def help_menu():
@@ -660,6 +662,9 @@ def farewell_bot():
 def sintecal_bot():
   hasil = random.choice(bot_dictionary["sintecal"])
   return sintesis(hasil)
+def thank_bot():
+  hasil = random.choice(bot_dictionary["thank"])
+  return sintesis(hasil)
 def matematics_bot():
   out = "Mode Matematika Aktif!"
   sintesis(out)
@@ -691,6 +696,8 @@ while True:
     break
   elif user in dictionary["sintecal"]:
     sintecal_bot()
+  elif user in dictionary["thank"]:
+    thank_bot()
   elif user in dictionary["matematics"]:
     matematics_bot()
   elif user in dictionary["help"]:
