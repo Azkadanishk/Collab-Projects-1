@@ -14,6 +14,7 @@ def create_tables():
     CREATE TABLE IF NOT EXISTS siswa (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nama TEXT NOT NULL,
+        kelas TEXT NOT NULL,
         barcode TEXT UNIQUE NOT NULL
     )
     """)

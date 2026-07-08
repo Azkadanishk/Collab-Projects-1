@@ -21,6 +21,7 @@ def proses_absensi(kode):
     
     siswa_id = siswa[0]
     nama = siswa[1]
+    kelas = siswa[2]
 
     waktu = datetime.now().strftime("%H:%M:%S")
 
@@ -52,7 +53,7 @@ def proses_absensi(kode):
             )
         )
         print(
-            f"[MASUK] {nama} - {waktu}"
+            f"[MASUK] {nama}/{kelas} - {waktu}"
         )
 
     else:
@@ -70,7 +71,7 @@ def proses_absensi(kode):
             )
         )
         print(
-            f"[Keluar] {nama} - {waktu}"
+            f"[Keluar] {nama}/{kelas} - {waktu}"
         )
     
     conn.commit()

@@ -22,6 +22,7 @@ def laporan():
         """
         SELECT
             siswa.nama,
+            siswa.kelas,
             absensi.jam_masuk,
             absensi.jam_keluar
         FROM absensi
@@ -37,8 +38,9 @@ def laporan():
             print(
                 f"""
 Nama    : {data[0]}
-Masuk   : {data[1]}
-Keluar  : {data[2]}
+Kelas   : {data[1]}
+Masuk   : {data[2]}
+Keluar  : {data[3]}
 -------------------
                 """
             )
@@ -80,6 +82,7 @@ Keluar  : {data[2]}
         """
         SELECT
             siswa.nama,
+            siswa.kelas
             buku.judul,
             buku.penulis,
             peminjaman.tanggal_pinjam,
@@ -99,10 +102,11 @@ Keluar  : {data[2]}
         print(
             f"""
 Siswa   : {data[0]}
-Buku    : {data[1]}
-Penulis : {data[2]}
-Pinjam  : {data[3]}
-Kembali : {data[4]}
+Kelas   : {data[1]}
+Buku    : {data[2]}
+Penulis : {data[3]}
+Pinjam  : {data[4]}
+Kembali : {data[5]}
 -------------------
             """
         )

@@ -21,6 +21,7 @@ def proses_peminjaman(kode):
     
     siswa_id = siswa[0]
     nama = siswa[1]
+    kelas = siswa[2]
 
     print("\nSiswa:", nama)
 
@@ -69,6 +70,7 @@ def proses_peminjaman(kode):
     print("\nPeminjaman Berhasil!")
     print("======================")
     print("Nama:", nama)
+    print("Kelas:", kelas)
     print("Buku:", judul)
     print("Kembali:", tanggal_kembali)
 
