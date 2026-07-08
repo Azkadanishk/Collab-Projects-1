@@ -1,14 +1,9 @@
 from scanner import scan_qr
 from database import connect
 from datetime import datetime
+import keyboard
 
-def absensi():
-
-    kode = scan_qr()
-
-    if kode is None:
-        print("QR tidak terbaca")
-        return
+def proses_absensi(kode):
 
     conn = connect()
     cursor = conn.cursor()
@@ -21,14 +16,14 @@ def absensi():
     siswa = cursor.fetchone()
 
     if siswa is None:
-        print("Siswa tidak ditemukan!")
+        print("Siswa tidak ditemukan:", kode)
         conn.close()
         return
-
+    
     siswa_id = siswa[0]
     nama = siswa[1]
 
-    waktu = datetime.now().strftime("%H:%M")
+    waktu = datetime.now().strftime("%H:%M:%S")
 
     cursor.execute(
         """
@@ -43,19 +38,24 @@ def absensi():
     data = cursor.fetchone()
 
     if data is None or data[3] is not None:
+
         cursor.execute(
             """
             INSERT INTO absensi
-            (siswa_id, jam_masuk)
-            VALUES (?,?)
+            (siswa_id, jam_masuk, jam_keluar, jumlah_kunjungan)
+            VALUES (?, ?, ?, ?)
             """,
-            (siswa_id, waktu)
+            (
+                siswa_id,
+                waktu,
+                None,
+                0
+            )
+        )
+        print(
+            f"[MASUK] {nama} - {waktu}"
         )
 
-        print(
-            f"{nama} masuk jam {waktu}"
-        )
-    
     else:
 
         cursor.execute(
@@ -65,15 +65,22 @@ def absensi():
             jumlah_kunjungan=1
             WHERE id=?
             """,
-            (waktu, data[0])
+            (
+                waktu,
+                data[0]
+            )
         )
-
         print(
-            f"{nama} keluar jam {waktu}"
+            f"[Keluar] {nama} - {waktu}"
         )
     
     conn.commit()
     conn.close()
-
+    
+def absensi():
+    print("Tekan 'Q' untuk keluar\n")
+    scan_qr(
+        proses_absensi
+    )
 if __name__ == "__main__":
     absensi()

@@ -3,10 +3,7 @@ import sqlite3
 DB_NAME = "database.db"
 
 def connect():
-    return sqlite3.connect(
-        DB_NAME,
-        timeout=10
-    )
+    return sqlite3.connect(DB_NAME)
 
 def create_tables():
     conn = connect()
@@ -27,7 +24,7 @@ def create_tables():
         siswa_id INTEGER,
         jam_masuk TEXT,
         jam_keluar TEXT,
-        jumlah_kunjungan INTEGER DEFAULT 0,
+        jumlah_kunjungan INTEGER DEFAULT 0
     )
     """)
 

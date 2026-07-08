@@ -1,6 +1,6 @@
 import cv2
 
-def scan_qr():
+def scan_qr(callback):
 
     detector = cv2.QRCodeDetector()
 
@@ -10,7 +10,9 @@ def scan_qr():
         print("Kamera tidak bisa diakses")
         return None
 
-    print("Scan QR...")
+    print("Scanner aktif...")
+
+    terakhir = None
 
     while True:
 
@@ -22,15 +24,18 @@ def scan_qr():
         data, bbox, _ = detector.detectAndDecode(frame)
 
         if data:
-            print("QR terbaca:", data)
+            if data != terakhir:
+                terakhir = data
+                print("QR:", data)
+                callback(data)
 
-            kamera.release()
-            cv2.destroyAllWindows()
+        cv2.imshow(
+            "Scanner Absensi",
+            frame
+        )
 
-            return data
-        cv2.imshow("QR Scanner", frame)
-
-        if cv2.waitKey(1) == 27:
+        key = cv2.waitKey(1)
+        if key == ord('q'):
             break
     
     kamera.release()
