@@ -1,7 +1,6 @@
 from scanner import scan_qr_realtime
 from database import connect
 from datetime import datetime
-import keyboard
 
 def proses_absensi(kode):
 

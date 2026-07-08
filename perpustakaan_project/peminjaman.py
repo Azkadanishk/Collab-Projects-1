@@ -74,7 +74,6 @@ def proses_peminjaman(kode):
 
 def peminjaman():
     print("Peminjaman buku")
-    print("Scan QR Siswa...")
 
     kode = scan_once()
 

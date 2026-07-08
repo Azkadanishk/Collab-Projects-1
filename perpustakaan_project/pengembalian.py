@@ -107,7 +107,7 @@ def proses_pengembalian(kode):
     conn.commit()
     conn.close()
 
-    print("\Pengembalian berhasil!")
+    print("\nPengembalian berhasil!")
     print("Tanggal:", tanggal)
 
 def pengembalian():

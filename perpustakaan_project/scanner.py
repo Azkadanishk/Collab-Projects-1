@@ -9,7 +9,7 @@ def scan_once():
     if not kamera.isOpened():
         print("Kamera tidak ditemukan!")
         return None
-    print("Scan QR...")
+    print("Scan QR Siswa...")
 
     while True:
         ret, frame = kamera.read()
@@ -27,7 +27,7 @@ def scan_once():
             return data
         
         cv2.imshow(
-            "QR Scanner",
+            "Perpustakaan QR Scanner",
             frame
         )
 
