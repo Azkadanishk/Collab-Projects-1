@@ -1,0 +1,46 @@
+import qrcode
+from database import connect
+
+def tambah_siswa(nama, barcode):
+    
+    conn = connect()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO siswa (nama, barcode) 
+        VALUES (?, ?)
+        """, 
+        (nama, barcode)
+    )
+    conn.commit()
+    conn.close()
+
+def buat_qr(data):
+
+    qr = qrcode.QRCode(
+        version=1,
+        box_size=10,
+        border=5
+    )
+
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    gambar = qr.make_image()
+
+    filename = f"qrcode/{data}.png"
+    gambar.save(filename)
+
+    print("QR dah dibuat: ", filename)
+
+if __name__ == "__main__":
+
+    nama = input("Nama siswa: ")
+    kode = input("Kode barcode: ")
+
+    tambah_siswa(nama, kode)
+
+    buat_qr(kode)
+
+    print("Siswa berhasil ditambahkan")
