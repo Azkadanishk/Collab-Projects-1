@@ -1,6 +1,45 @@
 import cv2
+import time
 
-def scan_qr(callback):
+def scan_once():
+    detector = cv2.QRCodeDetector()
+
+    kamera = cv2.VideoCapture(0)
+
+    if not kamera.isOpened():
+        print("Kamera tidak ditemukan!")
+        return None
+    print("Scan QR...")
+
+    while True:
+        ret, frame = kamera.read()
+
+        if not ret:
+            break
+
+        data, bbox, _ = detector.detectAndDecode(frame)
+
+        if data:
+            print("QR terbaca:", data)
+            kamera.release()
+            cv2.destroyAllWindows()
+
+            return data
+        
+        cv2.imshow(
+            "QR Scanner",
+            frame
+        )
+
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('q'):
+
+            kamera.release()
+            cv2.destroyAllWindows()
+
+            return None
+        
+def scan_qr_realtime(callback):
 
     detector = cv2.QRCodeDetector()
 
@@ -8,11 +47,12 @@ def scan_qr(callback):
 
     if not kamera.isOpened():
         print("Kamera tidak bisa diakses")
-        return None
+        return 
 
     print("Scanner aktif...")
 
-    terakhir = None
+    waktu_scan = 0
+    cooldown = 3
 
     while True:
 
@@ -24,8 +64,9 @@ def scan_qr(callback):
         data, bbox, _ = detector.detectAndDecode(frame)
 
         if data:
-            if data != terakhir:
-                terakhir = data
+            sekarang = time.time()
+            if sekarang - waktu_scan > cooldown:
+                waktu_scan = sekarang
                 print("QR:", data)
                 callback(data)
 
@@ -34,12 +75,11 @@ def scan_qr(callback):
             frame
         )
 
-        key = cv2.waitKey(1)
+        key = cv2.waitKey(1) & 0xFF
+
         if key == ord('q'):
+            print("Scanner berhenti...")
             break
     
     kamera.release()
     cv2.destroyAllWindows()
-
-if __name__ == "__main__":
-    scan_qr()

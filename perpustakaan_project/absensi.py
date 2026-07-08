@@ -1,4 +1,4 @@
-from scanner import scan_qr
+from scanner import scan_qr_realtime
 from database import connect
 from datetime import datetime
 import keyboard
@@ -79,7 +79,7 @@ def proses_absensi(kode):
     
 def absensi():
     print("Tekan 'Q' untuk keluar\n")
-    scan_qr(
+    scan_qr_realtime(
         proses_absensi
     )
 if __name__ == "__main__":

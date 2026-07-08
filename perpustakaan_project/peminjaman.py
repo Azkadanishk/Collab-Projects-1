@@ -1,15 +1,9 @@
-from scanner import scan_qr
+from scanner import scan_once
 from database import connect
 from datetime import datetime
 
-def peminjaman():
+def proses_peminjaman(kode):
 
-    kode = scan_qr()
-
-    if kode is None:
-        print("QR tidak terbaca") 
-        return
-    
     conn = connect()
     cursor = conn.cursor()
 
@@ -21,14 +15,14 @@ def peminjaman():
     siswa = cursor.fetchone()
 
     if siswa is None:
-        print("Siswa tidak ditemukan")
+        print("Siswa tidak ditemukan:", kode)
         conn.close()
         return
     
     siswa_id = siswa[0]
     nama = siswa[1]
 
-    print(f"\nSiswa: {nama}")
+    print("\nSiswa:", nama)
 
     judul = input("Judul buku: ")
     penulis = input("Penulis: ")
@@ -43,10 +37,14 @@ def peminjaman():
     cursor.execute(
         """
         INSERT INTO buku
-        (judul, penulis)
-        VALUES (?,?)
+        (judul, penulis, status)
+        VALUES (?, ?, ?)
         """,
-        (judul, penulis)
+        (
+            judul,
+            penulis,
+            "dipinjam"
+        )
     )
 
     buku_id = cursor.lastrowid
@@ -74,5 +72,13 @@ def peminjaman():
     print("Buku:", judul)
     print("Kembali:", tanggal_kembali)
 
+def peminjaman():
+    print("Peminjaman buku")
+    print("Scan QR Siswa...")
+
+    kode = scan_once()
+
+    if kode:
+        proses_peminjaman(kode)
 if __name__ == "__main__":
     peminjaman()

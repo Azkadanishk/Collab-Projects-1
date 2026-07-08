@@ -34,7 +34,7 @@ def buat_qr(data):
 
     print("QR dah dibuat: ", filename)
 
-if __name__ == "__main__":
+def daftar_siswa():
 
     nama = input("Nama siswa: ")
     kode = input("Kode barcode: ")
