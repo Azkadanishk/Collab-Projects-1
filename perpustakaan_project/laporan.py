@@ -82,7 +82,7 @@ Keluar  : {data[3]}
         """
         SELECT
             siswa.nama,
-            siswa.kelas
+            siswa.kelas,
             buku.judul,
             buku.penulis,
             peminjaman.tanggal_pinjam,
