@@ -8,7 +8,7 @@ from qr_generator import daftar_siswa
 def menu():
     while True:
         print("===================")
-        print("Perpustakaan System")
+        print("SISTEM PERPUSTAKAAN")
         print("===================")
         print("\n1. Absensi Masuk/Keluar")
         print("2. Peminjaman Buku")
