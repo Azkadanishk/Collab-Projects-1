@@ -49,7 +49,7 @@ def scan_qr_realtime(callback):
         print("Kamera tidak bisa diakses")
         return 
 
-    print("Scanner aktif...")
+    print("Scan QR Siswa...")
 
     waktu_scan = 0
     cooldown = 3
@@ -71,7 +71,7 @@ def scan_qr_realtime(callback):
                 callback(data)
 
         cv2.imshow(
-            "Scanner Absensi",
+            "Perpustakaan QR Scanner",
             frame
         )
 
