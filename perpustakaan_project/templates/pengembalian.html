@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Pengembalian Buku
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+
+    <h1>🔄 Pengembalian Buku</h1>
+
+    <p>Pilih transaksi peminjaman yang akan dikembalikan.</p>
+
+</div>
+
+<form method="POST">
+
+    <label>👨‍🎓 Siswa</label>
+
+    <select name="peminjaman_id" required>
+
+        <option value="">-- Pilih Transaksi --</option>
+
+        {% for item in data %}
+
+        <option value="{{ item[0] }}">
+
+            {{ item[1] }} - {{ item[2] }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <button type="submit">
+
+        🔄 Kembalikan Buku
+
+    </button>
+
+</form>
+
+{% endblock %}

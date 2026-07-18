@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+Data Siswa
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+
+    <h1>👨‍🎓 Data Siswa</h1>
+
+    <p>Kelola seluruh data siswa perpustakaan.</p>
+
+</div>
+
+
+<div class="top-bar">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Cari nama siswa..."
+        onkeyup="searchTable()"
+    >
+
+    <a href="/tambah_siswa">
+
+        <button>
+
+            ➕ Tambah Siswa
+
+        </button>
+
+    </a>
+
+</div>
+
+
+<table id="tabelSiswa">
+
+    <thead>
+
+        <tr>
+
+            <th>No</th>
+
+            <th>Nama</th>
+
+            <th>Kelas</th>
+
+            <th>Barcode</th>
+
+            <th>Aksi</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for siswa in data %}
+
+        <tr>
+
+            <td>{{ loop.index }}</td>
+
+            <td>{{ siswa[0] }}</td>
+
+            <td>{{ siswa[1] }}</td>
+
+            <td>{{ siswa[2] }}</td>
+
+            <td>
+
+                <button>Edit</button>
+
+                <button>Hapus</button>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+
+<script>
+
+function searchTable(){
+
+    let input = document.getElementById("searchInput");
+
+    let filter = input.value.toUpperCase();
+
+    let table = document.getElementById("tabelSiswa");
+
+    let tr = table.getElementsByTagName("tr");
+
+    for(let i=1;i<tr.length;i++){
+
+        let td = tr[i].getElementsByTagName("td")[1];
+
+        if(td){
+
+            let txt = td.textContent || td.innerText;
+
+            if(txt.toUpperCase().indexOf(filter)>-1){
+
+                tr[i].style.display="";
+
+            }else{
+
+                tr[i].style.display="none";
+
+            }
+
+        }
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

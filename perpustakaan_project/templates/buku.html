@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}
+Data Buku
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+
+    <h1>📚 Data Buku</h1>
+
+    <p>Kelola seluruh koleksi buku perpustakaan.</p>
+
+</div>
+
+<div class="top-bar">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Cari judul buku..."
+        onkeyup="searchTable()"
+    >
+
+    <button>
+        ➕ Tambah Buku
+    </button>
+
+</div>
+
+<table id="tabelBuku">
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Judul</th>
+
+            <th>Penulis</th>
+
+            <th>Status</th>
+
+            <th>Aksi</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for buku in data %}
+
+        <tr>
+
+            <td>{{ buku[0] }}</td>
+
+            <td>{{ buku[1] }}</td>
+
+            <td>{{ buku[2] }}</td>
+
+            <td>
+
+                {% if buku[3] == "tersedia" %}
+
+                    <span class="status tersedia">
+
+                        Tersedia
+
+                    </span>
+
+                {% else %}
+
+                    <span class="status dipinjam">
+
+                        Dipinjam
+
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <button>Edit</button>
+
+                <button>Hapus</button>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<script>
+
+function searchTable(){
+
+    let input=document.getElementById("searchInput");
+
+    let filter=input.value.toUpperCase();
+
+    let table=document.getElementById("tabelBuku");
+
+    let tr=table.getElementsByTagName("tr");
+
+    for(let i=1;i<tr.length;i++){
+
+        let td=tr[i].getElementsByTagName("td")[1];
+
+        if(td){
+
+            let txt=td.textContent||td.innerText;
+
+            tr[i].style.display=
+            txt.toUpperCase().indexOf(filter)>-1 ?
+            "" :
+            "none";
+
+        }
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

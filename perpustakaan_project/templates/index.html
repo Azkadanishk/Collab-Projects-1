@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+
+    <h1>Dashboard</h1>
+
+    <p>Selamat datang di Sistem Perpustakaan Digital 📚</p>
+
+</div>
+
+
+<div class="cards">
+
+    <div class="card">
+
+        <div class="icon">👨‍🎓</div>
+
+        <h2>{{ siswa }}</h2>
+
+        <p>Total Siswa</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="icon">📚</div>
+
+        <h2>{{ buku }}</h2>
+
+        <p>Total Buku</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="icon">📖</div>
+
+        <h2>{{ dipinjam }}</h2>
+
+        <p>Buku Dipinjam</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="icon">🚶</div>
+
+        <h2>{{ kunjungan }}</h2>
+
+        <p>Total Kunjungan</p>
+
+    </div>
+
+</div>
+
+
+<h2 class="menu-title">
+    Menu Cepat
+</h2>
+
+<div class="menu-grid">
+
+    <a href="/siswa" class="menu-card">
+
+        <div class="menu-icon">👨‍🎓</div>
+
+        <h3>Data Siswa</h3>
+
+        <p>Kelola data seluruh siswa.</p>
+
+    </a>
+
+
+    <a href="/buku" class="menu-card">
+
+        <div class="menu-icon">📚</div>
+
+        <h3>Data Buku</h3>
+
+        <p>Lihat dan kelola koleksi buku.</p>
+
+    </a>
+
+
+    <a href="/absensi" class="menu-card">
+
+        <div class="menu-icon">📷</div>
+
+        <h3>Absensi</h3>
+
+        <p>Scan QR untuk masuk & keluar.</p>
+
+    </a>
+
+
+    <a href="/peminjaman" class="menu-card">
+
+        <div class="menu-icon">📖</div>
+
+        <h3>Peminjaman</h3>
+
+        <p>Proses peminjaman buku.</p>
+
+    </a>
+
+
+    <a href="/pengembalian" class="menu-card">
+
+        <div class="menu-icon">🔄</div>
+
+        <h3>Pengembalian</h3>
+
+        <p>Kembalikan buku yang dipinjam.</p>
+
+    </a>
+
+
+    <a href="/laporan" class="menu-card">
+
+        <div class="menu-icon">📊</div>
+
+        <h3>Laporan</h3>
+
+        <p>Lihat statistik perpustakaan.</p>
+
+    </a>
+
+</div>
+
+
+<div class="footer">
+
+    <p>© 2026 Perpustakaan Digital | Dibuat dengan Python + Flask + SQLite</p>
+
+</div>
+
+{% endblock %}

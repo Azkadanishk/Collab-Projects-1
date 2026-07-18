@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}
+Laporan
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+
+    <h1>📊 Laporan Perpustakaan</h1>
+
+    <p>Riwayat seluruh transaksi perpustakaan.</p>
+
+</div>
+
+<div class="top-bar">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Cari nama siswa..."
+        onkeyup="searchTable()"
+    >
+
+</div>
+
+<table id="tabelLaporan">
+
+    <thead>
+
+        <tr>
+
+            <th>No</th>
+
+            <th>Nama</th>
+
+            <th>Kelas</th>
+
+            <th>Judul Buku</th>
+
+            <th>Penulis</th>
+
+            <th>Tanggal Pinjam</th>
+
+            <th>Tanggal Kembali</th>
+
+            <th>Status</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for item in data %}
+
+        <tr>
+
+            <td>{{ loop.index }}</td>
+
+            <td>{{ item[0] }}</td>
+
+            <td>{{ item[1] }}</td>
+
+            <td>{{ item[2] }}</td>
+
+            <td>{{ item[3] }}</td>
+
+            <td>{{ item[4] }}</td>
+
+            <td>{{ item[5] }}</td>
+
+            <td>
+
+                {% if item[6] == "Dipinjam" %}
+
+                <span class="status dipinjam">
+
+                    Dipinjam
+
+                </span>
+
+                {% else %}
+
+                <span class="status tersedia">
+
+                    Dikembalikan
+
+                </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<script>
+
+function searchTable(){
+
+    let input=document.getElementById("searchInput");
+
+    let filter=input.value.toUpperCase();
+
+    let table=document.getElementById("tabelLaporan");
+
+    let tr=table.getElementsByTagName("tr");
+
+    for(let i=1;i<tr.length;i++){
+
+        let td=tr[i].getElementsByTagName("td")[1];
+
+        if(td){
+
+            let txt=td.textContent||td.innerText;
+
+            tr[i].style.display=
+
+            txt.toUpperCase().indexOf(filter)>-1 ?
+
+            "" :
+
+            "none";
+
+        }
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

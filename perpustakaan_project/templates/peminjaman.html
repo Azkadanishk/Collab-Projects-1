@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Peminjaman Buku
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+
+    <h1>📖 Peminjaman Buku</h1>
+
+    <p>Silakan isi data peminjaman buku.</p>
+
+</div>
+
+<form method="POST">
+
+    <label>👨‍🎓 Pilih Siswa</label>
+
+    <select name="siswa" required>
+
+        <option value="">-- Pilih Siswa --</option>
+
+        {% for siswa in siswa_data %}
+
+        <option value="{{ siswa[0] }}">
+
+            {{ siswa[1] }} ({{ siswa[2] }})
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+
+    <label>📚 Pilih Buku</label>
+
+    <select name="buku" required>
+
+        <option value="">-- Pilih Buku --</option>
+
+        {% for buku in buku_data %}
+
+        <option value="{{ buku[0] }}">
+
+            {{ buku[1] }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+
+    <label>📅 Tanggal Pinjam</label>
+
+    <input
+        type="date"
+        name="tanggal_pinjam"
+        required>
+
+
+    <label>📅 Tanggal Kembali</label>
+
+    <input
+        type="date"
+        name="tanggal_kembali"
+        required>
+
+
+    <button type="submit">
+
+        📖 Pinjam Buku
+
+    </button>
+
+</form>
+
+{% endblock %}

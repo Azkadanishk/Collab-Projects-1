@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Perpustakaan Digital{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>📚 Library</h2>
+
+    <a href="/">🏠 Dashboard</a>
+
+    <a href="/siswa">👨‍🎓 Data Siswa</a>
+
+    <a href="/buku">📖 Data Buku</a>
+
+    <a href="/absensi">📷 Absensi</a>
+
+    <a href="/peminjaman">📚 Peminjaman</a>
+
+    <a href="/pengembalian">🔄 Pengembalian</a>
+
+    <a href="/laporan">📊 Laporan</a>
+
+</div>
+
+<div class="content">
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+</body>
+
+</html>
